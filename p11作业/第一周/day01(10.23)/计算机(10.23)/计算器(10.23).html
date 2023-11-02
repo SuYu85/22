@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <td colspan="4" style="height: 150px;">
+                <input id="numInput" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td onclick="OnClick(this)">%</td>
+            <td onclick="OnClick(this)">CE</td>
+            <td onclick="OnClick(this)">C</td>
+            <td onclick="OnClick(this)">/</td>
+        </tr>
+        <tr>
+            <td onclick="OnClick(this)">7</td>
+            <td onclick="OnClick(this)">8</td>
+            <td onclick="OnClick(this)">9</td>
+            <td onclick="OnClick(this)">*</td>
+        </tr>
+        <tr>
+            <td onclick="OnClick(this)">4</td>
+            <td onclick="OnClick(this)">5</td>
+            <td onclick="OnClick(this)">6</td>
+            <td onclick="OnClick(this)">-</td>
+        </tr>
+        <tr>
+            <td onclick="OnClick(this)">1</td>
+            <td onclick="OnClick(this)">2</td>
+            <td onclick="OnClick(this)">3</td>
+            <td onclick="OnClick(this)">+</td>
+        </tr>
+        <tr>
+            <td onclick="OnClick(this)">+/-</td>
+            <td onclick="OnClick(this)">0</td>
+            <td onclick="OnClick(this)">.</td>
+            <td onclick="OnClick(this)" style="background-color: #007327;color: #fff;">=</td>
+        </tr>
+    </table>
+</body>
+<script>
+    var strs = "";
+
+    function OnClick(obj) {
+        var str = obj.innerText;
+        var numInput = document.getElementById('numInput')
+
+        if (str == "=") {
+            numInput.value = "";
+            str = eval(strs);
+            strs = str + "";
+        } else {
+            strs += str;
+        }
+
+        if (str == "C") {
+            numInput.value = "";
+            strs = "";
+            str = "";
+        }
+
+        if (str == "CE") {
+            numInput.value = "";
+            strs = "";
+            str = "";
+        }
+
+        if (str == "+" || str == "-" || str == "*" || str == "/") {
+            numInput.value = str;
+        }else{
+            if(isNaN(numInput.value)){
+                numInput.value = "";
+            }
+
+            numInput.value += str;
+        }
+
+    }
+</script>
+<style>
+    table {
+        width: 400px;
+        height: 600px;
+        margin: 100px auto;
+        text-align: center;
+    }
+
+    input {
+        width: 96%;
+        height: 80px;
+        text-align: right;
+        font-size: 30px;
+    }
+
+    td {
+        width: 50px;
+        cursor: pointer;
+    }
+</style>
+
+</html>

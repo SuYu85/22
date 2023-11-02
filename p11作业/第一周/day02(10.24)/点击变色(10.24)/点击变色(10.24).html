@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="div">
+
+    </div>
+</body>
+
+<script>
+    let divs = document.getElementById('div')
+
+    divs.addEventListener("click", function () {
+        setTimeout(() => {
+            this.style.background = "rgb(96, 170, 180)"
+        }, 2000)
+    })
+</script>
+
+<style>
+    #div {
+        width: 260px;
+        height: 260px;
+        background-color: palegreen;
+        margin: 100px auto;
+    }
+</style>
+
+</html>

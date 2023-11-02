@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>点名器</h1>
+    <p style="width: 80%;text-align: right;"><span id="span"></span></p>
+    <div class="box" id="box"></div>
+    <p class="p">
+        <input type="button" id="btn" value="点名"><br>
+        <h1 id="_span"></h1>
+    </p>z
+</body>
+
+<script>
+    function my$(id) {
+        return document.getElementById(id)
+    }
+
+    var arr = ['黄晓明', '黄磊', '韩庚', '胡歌', '黄子韬', '鹿晗', '王一博', '王鹤棣',
+        '易烊千玺', '吴京', '成龙', '李连杰', '周星驰', '张艺兴', '朱亚文', '张译', '古天乐',
+        '刘德华', '邓为', '张一山', '彭于晏', '李易峰', '王嘉尔', '王凯'
+    ]
+
+    for (var i = 0; i < arr.length; i++) {
+        var div = document.createElement('div')
+        div.innerText = arr[i]
+        div.className = "name"
+        my$("box").appendChild(div)
+    }
+
+    var _index;
+
+    my$("btn").onclick = function () {
+        var peoples = arr.length;
+        // console.log(111);
+        if (this.value == '点名') {
+            timeId = setInterval(function () {
+                for (var i = 0; i < arr.length; i++) {
+                    my$("box").children[i].style.background = ""
+                }
+                var random = parseInt(Math.random() * peoples);
+                my$('box').children[random].style.background = "orange";
+                my$('_span').innerText = arr[random]
+                _index = random
+            }, 100)
+            this.value = "停止"
+        } else {
+            my$('_span').innerText = arr[_index]
+
+            clearInterval(timeId)
+            this.value = "点名"
+        }
+    }
+
+    getTime()
+    setInterval(getTime, 1000)
+
+    function getTime() {
+        var day = new Date();
+        var year = day.getFullYear();
+        var month = day.getMonth() + 1;
+        var dat = day.getDate();
+        var hour = day.getHours();
+        var minitue = day.getMinutes();
+        var second = day.getSeconds();
+        month = month < 10 ? +month : month;
+        dat = dat < 10 ? 0 + dat : dat;
+        hour = hour < 10 ? 0 + hour : hour;
+        minitue = minitue < 10 ? 0 + minitue : minitue;
+        second = second < 10 ? 0 + second : second;
+        my$("span").innerText = year + '-' + month + '-' + dat + ' ' + hour + ':' + minitue + ':' + second
+    }
+</script>
+
+<style>
+    h1 {
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .box {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .name {
+        width: 120px;
+        height: 50px;
+        background-color: green;
+        color: #fff;
+        text-align: center;
+        line-height: 50px;
+        margin: 10px 15px;
+    }
+
+    #btn {
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        border: 0;
+        margin: auto;
+    }
+    .p{
+        width: 100%;
+        text-align: center;
+    }
+</style>
+
+</html>
